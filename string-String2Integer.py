@@ -28,7 +28,7 @@ class Solution(object):
 		i = 0
 
 		# blank space
-		while i < len(str) and not str[i]:
+		while i < len(str) and str[i] == ' ':
 			i += 1
 
 		# sign, + or -
@@ -46,23 +46,21 @@ class Solution(object):
 				elif sign == -1:
 					return INT_MIN
 
-			result = result*10 + (ord(str[i]) - ord('0'))/10
+			result = result*10 + (ord(str[i]) - ord('0'))
 			i += 1
 
-		result *= sign
-
-
-
+		return result * sign
 
 
 
 if __name__ == '__main__':
-	print Solution().atoi("")
-	print Solution().atoi("-1")
-	print Solution().atoi("2147483647") 
-	print Solution().atoi("2147483648")
-	print Solution().atoi("-2147483648")  
-	print Solution().atoi("-2147483649")
+	print Solution().myAtoi("")
+	print Solution().myAtoi("-1")
+	print Solution().myAtoi("2147483647")
+	print Solution().myAtoi("2147483648")
+	print Solution().myAtoi("-2147483648")
+	print Solution().myAtoi("-2147483649")
+	print Solution().myAtoi(" 010")
 
 
 
