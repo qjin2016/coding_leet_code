@@ -53,7 +53,6 @@ class Solution(object):
 
 
 
-
 if __name__ == '__main__':
 	l1 = ListNode(0)
 	l1.next = ListNode(1)
