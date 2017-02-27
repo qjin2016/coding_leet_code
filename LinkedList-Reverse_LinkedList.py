@@ -45,6 +45,16 @@ class Solution(object):
 		return dummy
 
 
+	# an recursive solution
+	def reverseList3(self, head):
+		if not head.next:
+			return head
+		else:
+			new_start = self.reverseList3(head.next)
+		head.next.next = head
+		head.next = None
+		return new_start
+
 
 
 
@@ -54,5 +64,6 @@ if __name__ == '__main__':
 	l = ListNode(0)
 	l.next = ListNode(1)
 	l.next.next = ListNode(2)
-	print Solution().reverseList2(l)
+	l.next.next.next = ListNode(3)
+	print Solution().reverseList3(l)
 		
