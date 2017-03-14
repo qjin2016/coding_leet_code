@@ -7,6 +7,7 @@ https://leetcode.com/problems/contains-duplicate/#/description
 
 class Solution(object):
 
+	# solution 1
 	def containsDuplicate(self, nums):
 		if not nums:
 			return False
@@ -17,3 +18,7 @@ class Solution(object):
 			else:
 				return True
 		return False
+
+	# solution 2
+	def containsDuplicate(self, nums):
+		return len(nums) == len(set(nums))
