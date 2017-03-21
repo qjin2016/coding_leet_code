@@ -7,6 +7,8 @@ create table Employee (ID VARCHAR(20), Salary VARCHAR(20));
 INSERT INTO Employee (ID, Salary) VALUES (1, 100);
 INSERT INTO Employee (ID, Salary) VALUES (2, 200);
 INSERT INTO Employee (ID, Salary) VALUES (3, 300);
+INSERT INTO Employee (ID, Salary) VALUES (4, 400);
+
 
 DELETE FROM Employee WHERE ID = 2;
 DELETE FROM Employee WHERE ID = 3;
@@ -17,7 +19,7 @@ SELECT
 (SELECT Main.Salary FROM Employee Main
 WHERE 2 = (
             SELECT COUNT(*) FROM Employee Aux
-            WHERE Main.Salary >= Aux.Salary
+            WHERE Main.Salary <= Aux.Salary
 )
 ) SecondHighestSalary; 
 
