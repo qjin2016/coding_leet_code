@@ -10,25 +10,48 @@
 # 1st, type: delimiter ;
 # 2nd, type function and parameter
 
-CREATE FUNCTION getNthHighestSalary(N INT) 
-RETURNS INT
-BEGIN
-RETURN (
-		SELECT MAX(Main.Salary) FROM Employee Main
-		WHERE (N-1) = (
-					SELECT COUNT(DISTINCT(Aux.salary)) FROM Employee Aux
-					WHERE Main.Salary < Aux.Salary)
-);
-END
+-- CREATE FUNCTION getNthHighestSalary(N INT) 
+-- RETURNS INT
+-- BEGIN
+-- RETURN (
+-- 		SELECT MAX(Main.Salary) FROM Employee Main
+-- 		WHERE (N-1) = (
+-- 					SELECT COUNT(DISTINCT(Aux.salary)) FROM Employee Aux
+-- 					WHERE Main.Salary < Aux.Salary)
+-- );
+-- END
+
+-- CREATE FUNCTION getNthHighestSalary(N INT) 
+-- RETURNS INT
+-- BEGIN
+-- RETURN (
+-- 		SELECT MIN(Main.Salary) FROM Employee Main
+-- 		WHERE N = (
+-- 					SELECT COUNT(DISTINCT(Aux.salary)) FROM Employee Aux
+-- 					WHERE Main.Salary > Aux.Salary)
+-- );
+-- END
 
 CREATE FUNCTION getNthHighestSalary(N INT) 
 RETURNS INT
 BEGIN
 RETURN (
-		SELECT MIN(Main.Salary) FROM Employee Main
+		SELECT (SELECT DISTINCT(Main.Salary) FROM Employee Main
+		WHERE N-1 = (
+					SELECT COUNT(DISTINCT(Aux.salary)) FROM Employee Aux
+					WHERE Main.Salary < Aux.Salary)) Salaries
+);
+END
+
+# alternatively:
+CREATE FUNCTION getNthHighestSalary(N INT) 
+RETURNS INT
+BEGIN
+RETURN (
+		SELECT (SELECT DISTINCT(Main.Salary) FROM Employee Main
 		WHERE N = (
 					SELECT COUNT(DISTINCT(Aux.salary)) FROM Employee Aux
-					WHERE Main.Salary > Aux.Salary)
+					WHERE Main.Salary <= Aux.Salary)) Salaries
 );
 END
 
