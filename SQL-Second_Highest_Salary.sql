@@ -16,19 +16,14 @@ DELETE FROM Employee WHERE ID = 3;
 
 # 1,
 SELECT 
-(SELECT Main.Salary FROM Employee Main
+(SELECT DISTINCT(Main.Salary) FROM Employee Main
 WHERE 2 = (
-            SELECT COUNT(*) FROM Employee Aux
+            SELECT COUNT(DISTINCT(Aux.Salary)) FROM Employee Aux
             WHERE Main.Salary <= Aux.Salary
 )
 ) SecondHighestSalary; 
 
 # 2,
-SELECT
-	(
-		SELECT Salary FROM Employee
-		Order By Salary DESC LIMIT 1, 1
-		)
-SecondHighestSalary;
+SELECT( SELECT DISTINCT(Salary) FROM Employee Order By Salary DESC LIMIT 1, 1) SecondHighestSalary;
 
 # NOTE, query language might different depending on the version, vendor, MySQL/SQL server, etc.
