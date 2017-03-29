@@ -18,3 +18,6 @@ class Solution(object):
 			local_max = max(0, local_max + num)
 			global_max = max(global_max, local_max)
 		return global_max
+
+if __name__ == '__main__':
+	print(Solution().maxSubArray([-2, 1]))
